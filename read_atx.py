@@ -17,8 +17,8 @@ def loadATX(atxFilename,filename_out,renderFloppy=True):
 	SECTORS_PER_TRACK = 18
 	TRACK_COUNT = 40
 	DISK_SIZE = TRACK_COUNT * SECTORS_PER_TRACK * SECTOR_SIZE
-	#dheader = struct.pack('<3h',0x0296,DISK_SIZE//16,SECTOR_SIZE) + bytearray(10)
-	#ddata = bytearray(DISK_SIZE)
+	dheader = struct.pack('<3h',0x0296,DISK_SIZE//16,SECTOR_SIZE) + bytearray(10)
+	ddata = bytearray(DISK_SIZE)
 
 	if filename_out:
 		if renderFloppy:
@@ -174,7 +174,7 @@ def loadATX(atxFilename,filename_out,renderFloppy=True):
 		#img = img.resize((int(size // 16), int(size // 16)), Image.LANCZOS)
 		img.save(filename_out)
 
-	#open(atxFilename + '.dsk','wb').write(dheader+ddata)
+	open(atxFilename + '.dsk','wb').write(dheader+ddata)
 	return True
 
 loadATX("Pharaohs_Curse.atx",'disk_track_view.png',renderFloppy=False)
